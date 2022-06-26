@@ -1,0 +1,19 @@
+body {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color: #9bc405;
+}
+
+main {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+canvas {
+  background-color: #9bc405;
+  border: solid 5px black;
+}
