@@ -7,7 +7,7 @@ let game;
 let foodImage;
 
 function preload() {
-  foodImage = loadImage("assets/food.png");
+  foodImage = loadImage(window.location.href + "assets/food.png");
 }
 
 function setup() {
