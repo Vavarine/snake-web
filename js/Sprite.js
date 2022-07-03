@@ -12,13 +12,16 @@ export default class Sprite {
     const pixelSize = this.res / spriteHeight
     const spritePixels = this.image.pixels;
 
+
     for (let i = 0; i < spriteWitdh; i++) {
       for (let j = 0; j < spriteHeight; j++) {
         const pixelAlpha = spritePixels[(i + j * spriteWitdh) * 4 + 3];
 
+        // translate(x, y);
         noStroke();
         fill(0, 0, 0, pixelAlpha);
         rect(x + (i * pixelSize), y + (j * pixelSize), pixelSize, pixelSize);
+        // rotate(PI / 3.0, [0, 0, 1]);
       }
     }
   }

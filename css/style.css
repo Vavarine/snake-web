@@ -17,3 +17,10 @@ canvas {
   background-color: #9bc405;
   border: solid 5px black;
 }
+
+.game-state {
+  position: absolute;
+  left: 0;
+  white-space: break-spaces;
+  top: 0;
+}
