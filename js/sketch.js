@@ -12,7 +12,10 @@ function preload() {
   foodImage = loadImage("assets/food.png");
 
   snakeImages = {
-    snakeBodyImage: loadImage("assets/body.png")
+    body: loadImage("assets/body.png"),
+    head: loadImage("assets/head.png"),
+    tail: loadImage("assets/tail.png"),
+    corner: loadImage("assets/body_corner.png"),
   }
 }
 
