@@ -9,13 +9,16 @@ let foodImage;
 let snakeImages;
 
 function preload() {
-  foodImage = loadImage("assets/food.png");
+  foodImage = loadImage("assets/images/food.png");
 
   snakeImages = {
-    body: loadImage("assets/body.png"),
-    head: loadImage("assets/head.png"),
-    tail: loadImage("assets/tail.png"),
-    corner: loadImage("assets/body_corner.png"),
+    body: loadImage("assets/images/body.png"),
+    head: loadImage("assets/images/head.png"),
+    headOpenMouth: loadImage("assets/images/head_open_mouth.png"),
+    tail: loadImage("assets/images/tail.png"),
+    corner: loadImage("assets/images/body_corner.png"),
+    cornerFull: loadImage("assets/images/body_corner_full.png"),
+    full: loadImage("assets/images/body_full.png"),
   }
 }
 
@@ -35,4 +38,3 @@ function draw() {
 window.preload = preload
 window.setup = setup
 window.draw = draw
-

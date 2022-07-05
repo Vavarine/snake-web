@@ -6,7 +6,7 @@ export default class Sprite {
     this.image.loadPixels();
   }
 
-  draw(x, y, dir = "right", xFlip = false, yFlip = false) {
+  draw(x, y, dir = "right", color = "#000", xFlip = false, yFlip = false) {
     const spriteHeight = this.image.height;
     const spriteWitdh = this.image.width;
     const pixelSize = this.res / spriteHeight
@@ -31,9 +31,11 @@ export default class Sprite {
       for (let j = 0; j < spriteHeight; j++) {
         const pixelAlpha = spritePixels[(i + j * spriteWitdh) * 4 + 3];
 
-        noStroke();
-        fill(0, 0, 0, pixelAlpha);
-        rect((i * pixelSize) - this.res / 2, (j * pixelSize) - this.res / 2, pixelSize, pixelSize);
+        if (pixelAlpha !== 0) {
+          noStroke();
+          fill(color);
+          rect((i * pixelSize) - this.res / 2, (j * pixelSize) - this.res / 2, pixelSize, pixelSize);
+        }
       }
     }
 

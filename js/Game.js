@@ -3,22 +3,21 @@ import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
 import Snake from './Snake.js';
 import Food from './Food.js';
 import Sprite from "./Sprite.js"
+import { Menu } from "./Menu.js";
+import { Score } from "./Score.js";
 
 export default class Game {
   constructor(res, cols, rows, foodImage, snakeImages) {
-
     this.res = res;
     this.cols = cols
     this.rows = rows
     this.snakes = []
     this.foods = [];
     this.foodSprite = new Sprite(foodImage, this.res);
-
     this.snakeSprites = Object.keys(snakeImages).reduce((acc, cur) => ({ ...acc, [cur]: new Sprite(snakeImages[cur], this.res) }), {});
-
-    console.log("snakeSprites", this.snakeSprites)
-
     this.socket = io("http://localhost:3333", { transports: ['websocket'] });
+    this.menu = new Menu()
+    this.scoreBoard;
 
     createCanvas(cols * res, rows * res);
     drawingContext.imageSmoothingEnabled = false;
@@ -28,31 +27,24 @@ export default class Game {
 
   setup() {
     this.socket.on("connect", () => {
-      console.log("connected");
+      this.scoreBoard = new Score(this.socket.id)
 
-      this.socket.emit('join')
-      this.setupControls()
+      console.log(this.socket.id)
+
+      this.menu.onJoin = (data) => {
+        this.socket.emit('join', data)
+        this.setupControls()
+      }
     })
 
-    this.socket.on('update', (data) => {
-      const snakes = data.snakes.map(snakeData => {
-        const { x, y, body } = snakeData;
-
-        return new Snake(x, y, body, this.res, this.snakeSprites)
-      })
-
-      const foods = data.foods.map(foodData => {
-        const { x, y } = foodData;
-
-        return new Food(x, y, this.res, this.foodSprite)
-      })
-
-      this.snakes = snakes;
-      this.foods = foods;
-    })
+    this.socket.on('update', (data) => { this.update(data) })
 
     this.socket.on('joined', (data) => {
       console.log("joined", data);
+    })
+
+    this.socket.on('gameOver', (data) => {
+      this.menu.showGameOver(data)
     })
 
     const foodPosition = this.getFoodRandomPosition(this.cols, this.rows);
@@ -61,7 +53,25 @@ export default class Game {
 
   draw() {
     this.foods.forEach(food => food.draw());
-    this.snakes.forEach(snake => snake.draw());
+    this.snakes.forEach(snake => snake.draw(this.foods));
+  }
+
+  update(data) {
+    const snakes = data.snakes.map(snakeData => {
+      const { x, y, body } = snakeData;
+      console.log(snakeData)
+      return new Snake(x, y, body, this.res, this.snakeSprites, snakeData.id, snakeData.nickname, snakeData.color)
+    })
+
+    const foods = data.foods.map(foodData => {
+      const { x, y } = foodData;
+
+      return new Food(x, y, this.res, this.foodSprite)
+    })
+
+    this.snakes = snakes;
+    this.foods = foods;
+    this.scoreBoard.update(snakes)
   }
 
   setupControls() {
@@ -72,8 +82,6 @@ export default class Game {
         'ArrowLeft': 'left',
         'ArrowRight': 'right'
       }
-
-      console.log("keydown", e.key)
 
       const dir = map?.[e.key];
 

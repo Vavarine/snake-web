@@ -10,7 +10,30 @@
     <title>Snake</title>
   </head>
   <body>
-    <main></main>
-    <p class="game-state"></p>
+    <main>
+      <div class="score-container">
+        <span class="score"></span>
+      </div>
+    </main>
+    <div class="menu-container">
+      <button class="close">X</button>
+      <form class="menu">
+        <div class="input-container">
+          <label for="nickname">Nickname:</label>
+          <input id="nickname" class="nickname" type="text" maxlength="8" minlength="3" required />
+        </div>
+
+        <div class="input-container">
+          <label for="nickname">Color:</label>
+          <div class="color-selector-container"></div>
+        </div>
+
+        <button class="play" type="submit">Play</button>
+      </form>
+    </div>
+    <form class="game-over closed">
+      <h1>Game Over</h1>
+      <button class="play" type="submit">Play Again</button>
+    </form>
   </body>
 </html>
