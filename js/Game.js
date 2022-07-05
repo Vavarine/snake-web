@@ -15,7 +15,7 @@ export default class Game {
     this.foods = [];
     this.foodSprite = new Sprite(foodImage, this.res);
     this.snakeSprites = Object.keys(snakeImages).reduce((acc, cur) => ({ ...acc, [cur]: new Sprite(snakeImages[cur], this.res) }), {});
-    this.socket = io("http://52.67.198.148/", { transports: ['websocket'] });
+    this.socket = io("https://snake.evailson.dev/", { transports: ['websocket'] });
     this.menu = new Menu()
     this.scoreBoard;
 
