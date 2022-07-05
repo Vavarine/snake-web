@@ -15,7 +15,7 @@ export default class Game {
     this.foods = [];
     this.foodSprite = new Sprite(foodImage, this.res);
     this.snakeSprites = Object.keys(snakeImages).reduce((acc, cur) => ({ ...acc, [cur]: new Sprite(snakeImages[cur], this.res) }), {});
-    this.socket = io("http://localhost:3333", { transports: ['websocket'] });
+    this.socket = io("http://52.67.198.148/", { transports: ['websocket'] });
     this.menu = new Menu()
     this.scoreBoard;
 
@@ -28,8 +28,6 @@ export default class Game {
   setup() {
     this.socket.on("connect", () => {
       this.scoreBoard = new Score(this.socket.id)
-
-      console.log(this.socket.id)
 
       this.menu.onJoin = (data) => {
         this.socket.emit('join', data)
@@ -59,7 +57,7 @@ export default class Game {
   update(data) {
     const snakes = data.snakes.map(snakeData => {
       const { x, y, body } = snakeData;
-      console.log(snakeData)
+
       return new Snake(x, y, body, this.res, this.snakeSprites, snakeData.id, snakeData.nickname, snakeData.color)
     })
 
