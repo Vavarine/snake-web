@@ -1,8 +1,8 @@
 import Game from "./Game.js";
 
-const res = 20;
-const cols = 50;
-const rows = 30;
+const GAME_RESOLUTION = 20;
+const GAME_COLUMNS = 50;
+const GAME_ROWS = 30;
 
 let game;
 let foodImage;
@@ -25,13 +25,14 @@ function preload() {
 function setup() {
   drawingContext.imageSmoothingEnabled = false;
 
-  game = new Game(res, cols, rows, foodImage, snakeImages);
+  game = new Game(GAME_RESOLUTION, GAME_COLUMNS, GAME_ROWS, foodImage, snakeImages);
 }
 
 function draw() {
   clear()
 
   if (!game) return
+
   game.draw()
 }
 

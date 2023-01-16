@@ -1,4 +1,5 @@
 import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+import { configs } from "./config.js";
 
 import Snake from './Snake.js';
 import Food from './Food.js';
@@ -15,7 +16,7 @@ export default class Game {
     this.foods = [];
     this.foodSprite = new Sprite(foodImage, this.res);
     this.snakeSprites = Object.keys(snakeImages).reduce((acc, cur) => ({ ...acc, [cur]: new Sprite(snakeImages[cur], this.res) }), {});
-    this.socket = io("https://snake.evailson.dev/", { transports: ['websocket'] });
+    this.socket = io(configs.serverUrl, { transports: ['websocket'] });
     this.menu = new Menu()
     this.scoreBoard;
 

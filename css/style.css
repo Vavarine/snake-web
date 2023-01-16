@@ -214,3 +214,31 @@ input[type="radio"]:checked + label {
   visibility: visible;
   opacity: 1;
 }
+
+/* Mobile disclaimer */
+
+.mobile-disclaimer {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  main {
+    display: none;
+  }
+
+  .mobile-disclaimer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #9bc405;
+  }
+
+  .mobile-disclaimer p {
+    font-size: 20px;
+    text-align: center;
+  }
+}
