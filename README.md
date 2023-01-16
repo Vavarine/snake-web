@@ -28,4 +28,9 @@ Classic snake game with online multiplayer feature.
 - Change the server url in `js/config.js`.
 - Run project with a local server (e.g. `live-server` or `http-server`).
 
+## Built with
+
+- [Socket.io](https://socket.io/)
+- [p5.js](https://p5js.org/)
+
 created with ❤️ by me.
