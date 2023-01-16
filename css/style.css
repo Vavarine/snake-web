@@ -30,6 +30,17 @@ canvas {
   border: solid 5px black;
 }
 
+label {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+button {
+  transition: all 0.2s;
+  cursor: pointer;
+  outline: none;
+}
+
 .game-state {
   position: absolute;
   left: 0;
@@ -77,11 +88,6 @@ canvas {
   justify-content: center;
 }
 
-label {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
 .nickname {
   height: 60px;
   width: 260px;
@@ -124,12 +130,6 @@ label {
 
   border: none;
   background-color: transparent;
-}
-
-button {
-  transition: all 0.2s;
-  cursor: pointer;
-  outline: none;
 }
 
 button:hover {
@@ -179,7 +179,7 @@ input[type="radio"]:checked + label {
   font-size: 40px;
 }
 
-.leaderboard {
+.leader-board {
   width: 100%;
   max-width: 1000px;
 

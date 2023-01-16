@@ -3,10 +3,10 @@ export class Score {
     this.playerId = playerId;
 
     this.scoreEl = document.querySelector(".score");
-    this.leaderboardEl = document.createElement("div");
-    this.leaderboardEl.classList.add("leaderboard");
+    this.leaderBoardEl = document.createElement("div");
+    this.leaderBoardEl.classList.add("leader-board");
 
-    document.querySelector("main").appendChild(this.leaderboardEl);
+    document.querySelector("main").appendChild(this.leaderBoardEl);
   }
 
   update(snakes) {
@@ -15,11 +15,11 @@ export class Score {
     const playerSnake = this.snakes.find(snake => snake.id === this.playerId);
     const sortedSnakes = this.snakes.sort((a, b) => b.body.length - a.body.length);
 
-    this.leaderboardEl.innerHTML = sortedSnakes.map((snake, index) => {
+    this.leaderBoardEl.innerHTML = sortedSnakes.map((snake, index) => {
       const { nickname, color } = snake;
 
       return `
-        <div class="leaderboard-item" style="color: ${color}">#${index + 1} ${nickname}</div>
+        <div class="leader-board-item" style="color: ${color}">#${index + 1} ${nickname}</div>
       `
     }).join("")
 
