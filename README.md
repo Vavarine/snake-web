@@ -4,7 +4,7 @@
   <img src="https://raw.githubusercontent.com/Vavarine/snake-front/master/assets/logo.png" alt="Snake Game Logo" width="200" />
 </p>
 
-# Multiplayer Classis Snake
+# Multiplayer Classic Snake
 
 Classic snake game with online multiplayer feature.
 
