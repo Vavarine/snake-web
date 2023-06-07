@@ -10,7 +10,7 @@ Classic snake game with online multiplayer feature.
 
 ## links
 
-- [Live demo](https://vavarine.github.io/snake-web/)
+- [Live demo](https://snake.evailson.dev/)
 - [Server repo](https://github.com/Vavarine/snake-server)
 
 ## How to play
